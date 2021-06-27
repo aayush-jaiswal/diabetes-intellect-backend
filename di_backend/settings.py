@@ -109,6 +109,7 @@ REST_FRAMEWORK = {
 AUTH_USER_MODEL = 'userauth.User'
 
 DJOSER = {
+    'LOGIN_FIELD': 'email',
     'USER_CREATE_PASSWORD_RETYPE': True,
     'SERIALIZERS': {
         'user_create': 'userauth.serializers.UserCreateSerializer',
