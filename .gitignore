@@ -11,3 +11,6 @@ venv/
 
 # Todos
 todo*
+
+# Editor
+.vscode/
