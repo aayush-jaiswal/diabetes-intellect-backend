@@ -9,7 +9,9 @@ DIET_TYPE = (
 
 
 class UserData(models.Model):
-    owner = models.ForeignKey(userauth.models.User, on_delete=models.CASCADE)
+    owner = models.OneToOneField(
+        userauth.models.User, on_delete=models.CASCADE, unique=True
+    )
     date_of_birth = models.DateField()
     height = models.IntegerField()  # in cms
     weight = models.IntegerField()  # in kgs
