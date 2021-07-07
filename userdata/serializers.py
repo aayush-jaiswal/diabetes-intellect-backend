@@ -11,7 +11,7 @@ class UserDataSerializer(serializers.ModelSerializer):
         return (date.today() - userdata.date_of_birth) // timedelta(days=365.2425)
 
     def get_bmi(self, userdata):
-        return userdata.weight / (userdata.height / 100) ** 2
+        return round(userdata.weight / (userdata.height / 100) ** 2, 2)
 
     class Meta:
         model = UserData
