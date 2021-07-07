@@ -11,3 +11,9 @@ venv/
 
 # Todos
 todo*
+
+# Editor
+.vscode/
+
+# Database
+*.sqlite3
