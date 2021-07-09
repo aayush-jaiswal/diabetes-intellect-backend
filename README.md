@@ -25,17 +25,6 @@ Install dependencies
 pip install -r requirements.txt
 ```
 
-Setup database
-```bash
-sudo su postgres
-psql
-```
-```bash
-postgres=# CREATE DATABASE diabintel
-postgres=# CREATE ROLE django WITH LOGIN PASSWORD 'hello';
-postgres=# GRANT ALL PRIVILEGES ON DATABASE diabintel TO django;
-```
-
 Make migrations
 ```bash
 python3 manage.py makemigrations
