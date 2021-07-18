@@ -1,0 +1,150 @@
+openapi: "3.0.2"
+
+info:
+  title: Diabetes Intellect
+  version: "1.0"
+
+servers:
+  - url: localhost:8000
+
+tags:
+  - name: User
+    description: API for user authentication
+  - name: User Data
+    description: APIs for user data
+
+paths:
+  /auth/users/:
+    post:
+      tags:
+        - User
+      summary: Create new user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+            example:
+              first_name: Aman
+              last_name: Saini
+              email: aman@demo.com
+              password: hello1234
+              re_password: hello1234
+
+        required: true
+      responses:
+        201:
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  first_name:
+                    type: string
+                  last_name:
+                    type: string
+                  email:
+                    type: string
+                  id:
+                    type: integer
+              example:
+                first_name: Aman
+                last_name: Saini
+                email: aman@demo.com
+                id: 69
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  email:
+                    type: array
+                    example:
+                      - This field is required.
+                    items:
+                      type: object
+                  password:
+                    type: array
+                    example:
+                      - This field is required.
+                    items:
+                      type: object
+                  re_password:
+                    type: array
+                    example:
+                      - This field is required.
+                    items:
+                      type: object
+
+  /auth/users/me/:
+    get:
+      tags:
+        - User
+      summary: Get current logged in user
+      responses:
+        200:
+          description: OK
+          content: {}
+      security:
+        - BearerAuth: []
+
+  /auth/jwt/create/:
+    post:
+      tags:
+        - User
+      summary: Create JWT token
+      responses:
+        200:
+          description: OK
+          content: {}
+
+  /userdata/:
+    post:
+      tags:
+        - User Data
+      summary: Create user data
+      responses:
+        200:
+          description: OK
+          content: {}
+
+  /userdata/{user_id}/:
+    get:
+      tags:
+        - User Data
+      summary: Get user data
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: OK
+          content: {}
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+        re_password:
+          type: string
+
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
