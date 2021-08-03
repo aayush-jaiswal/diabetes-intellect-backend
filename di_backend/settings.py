@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     # diabetes intellect apps
     "userauth.apps.UserAuthConfig",
     "userdata.apps.UserDataConfig",
+    "bloodsugar.apps.BloodSugarConfig",
 ]
 
 MIDDLEWARE = [

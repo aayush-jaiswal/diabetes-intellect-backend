@@ -20,4 +20,5 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("auth/", include("userauth.urls")),
     path("userdata/", include("userdata.urls")),
+    path("userrecord/", include("bloodsugar.urls")),
 ]
